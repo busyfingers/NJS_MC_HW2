@@ -5,9 +5,6 @@
 // Dependencies
 const server = require("./lib/server");
 
-// TODO: remove this
-const _data = require("./lib/data");
-
 // Declare the app
 let app = {};
 
@@ -15,37 +12,6 @@ let app = {};
 app.init = () => {
     // Start the server
     server.init();
-
- // Test code
-/*  (() => {
-     return new Promise((resolve, reject) => {
-        _data.create("test", "testing1", {"data:": "some data"}).then(() => {
-            console.log("File created successfully");
-            return _data.read("test", "testing1");       
-        }).then(data => {
-            console.log("Got data from file: ", data);
-            return _data.update("test", "testing1", {"data": "new data"});
-        }).then(() => {
-            console.log("File updated successfully");
-            return _data.read("test", "testing1");      
-        }).then(data => {
-            console.log("Got data from file: ", data);
-            resolve();
-            //return _data.list("test");
-        }).then(files => {
-            console.log("Files: ", files);  
-            return _data.delete("test", "testing1");
-        }).then(() => {
-            console.log("File deleted successfully");
-        }).catch(err => {
-            console.log("Error doing file operation: ", err);
-        });
-    });
-})().then(resp => {
-    console.log("it was ok: ", resp);
-}).catch(err => {
-    console.log("caught err: ", err);
-}); */
 };
 
 // Execute

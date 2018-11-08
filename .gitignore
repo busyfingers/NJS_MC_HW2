@@ -67,3 +67,4 @@ typings/
 .data/orders/*
 
 # Do not include certificates
+*.pem
