@@ -60,5 +60,8 @@ typings/
 # next.js build output
 .next
 
-# Do not include data files
-.data/*
+# Do not include data files, except the menu
+.data/carts/*
+.data/users/*
+.data/tokens/*
+.data/orders/*
