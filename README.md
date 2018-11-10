@@ -136,3 +136,5 @@ __A valid token that matches the user who specified order belongs to must be pro
 Update the payment status of an order to "Paid" or "Unpaid". Used if the payment was not successful when the order was created. Sends a confirmation email to the user upon successful payment.
 
 _Required field: id [string], paymentStatus [string] (request payload)_
+
+__A valid token that matches the user who specified order belongs to must be provided in the request header__
