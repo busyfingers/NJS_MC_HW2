@@ -1,6 +1,7 @@
 # NJS_MC_HW2
 Homework Assignment #2 in the Node JS Master Class
-- API for a pizza-delivery company
+
+_An API for a pizza-delivery company_
 
 ## Overview
 This is a JSON API, meaning all responses will be in JSON format and all calls that sends data must send that data in JSON format.
