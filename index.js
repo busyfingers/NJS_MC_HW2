@@ -3,6 +3,7 @@
  */
 
 // Dependencies
+const bootstrap = require("./lib/bootstrap");
 const server = require("./lib/server");
 
 // Declare the app
@@ -10,8 +11,14 @@ let app = {};
 
 // Init function
 app.init = () => {
-    // Start the server
-    server.init();
+    // Bootstrap the server
+    bootstrap.do().then(_ => {
+        // Start the server
+        server.init();
+    }).catch(err => {
+        // Explode if we get here because then something is wrong
+        throw err;
+    })
 };
 
 // Execute
