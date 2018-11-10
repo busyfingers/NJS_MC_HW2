@@ -6,12 +6,6 @@ _An API for a pizza-delivery company_
 ## Overview
 This is a JSON API, meaning all responses will be in JSON format and all calls that sends data must send that data in JSON format.
 
-Users can only access their own data, so a valid token that matches their email must be sent when reading or changing any data, except for the menu which is available to all logged in users.
-
-Users can fill a shopping cart with items from the menu. Adding an item with the quantity 0 will remove that item from the cart.
-
-When a user places an order, their shopping cart is emptied and payment is made automatically. The user receive a confirmation email when successfully placing an order - i.e. when the payment was successful. If the payment was unsuccessful, a new attempt can be made by making a PUT request to /orders for that specific order.
-
 Example of a payload for a GET request to /users
 
 ```
@@ -19,6 +13,19 @@ Example of a payload for a GET request to /users
     "email": "some.address@domain.com"
 }
 ```
+
+Users can only access their own data, so a valid token that matches their email must be sent when reading or changing any data, except for the menu which is available to all logged in users.
+
+Users can fill a shopping cart with items from the menu. Adding an item with the quantity 0 will remove that item from the cart.
+
+When a user places an order, their shopping cart is emptied and payment is made automatically. The user receive a confirmation email when successfully placing an order - i.e. when the payment was successful. If the payment was unsuccessful, a new attempt can be made by making a PUT request to /orders for that specific order.
+
+The application integrates with the Stripe.com and Mailgun.com APIs for payment and email service respectively. In order for the integrations to work, the application must be started with the necessary environmental parameters provided:
+
+* STRIPE_APIKEY = The API-key Stripe
+* MAILGUN_APIKEY = The API-key for Mailgun
+* MAILGUN_DOMAIN = The domain from which to send the email
+* MAILGUN_FROM = The sender's email address
 
 ## Routes
 ### /users
