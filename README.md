@@ -27,6 +27,8 @@ The application integrates with the Stripe.com and Mailgun.com APIs for payment 
 * MAILGUN_DOMAIN = The domain from which to send the email
 * MAILGUN_FROM = The sender's email address
 
+**Note:** Certificate and key files are _required_ to make the application run with HTTPS support. They must be placed in the .https folder (created automatically on startup) in the root directory.
+
 ## Routes
 ### /users
 #### POST:
