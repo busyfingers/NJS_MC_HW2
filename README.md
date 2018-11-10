@@ -13,74 +13,118 @@ When a user places an order, their shopping cart is emptied and payment is made 
 
 Example of a payload for a GET request to /users
 
-`{
+```
+{
     "email": "some.address@domain.com"
-}`
+}
+```
 
 ## Routes
-###/users###
-**POST:** Creates a new user.
-Required fields: firstName [string], lastName [string], email [string], streetAddress [string], password [string], tosAgreement [boolean] (request payload)
+### /users
+#### POST:
+Creates a new user.
 
-**GET:** Retrieve data from a user specified by email (except the password)
-Required fields: email [string] (request parameter)
+_Required fields: firstName [string], lastName [string], email [string], streetAddress [string], password [string], tosAgreement [boolean] (request payload)_
+
+#### GET:
+Retrieve data from a user specified by email (except the password)
+
+_Required fields: email [string] (request parameter)_
+
 __A valid token that matches email provided must be provided in the request header__
 
-**PUT:** Make changes to a user's information.
-Required fields: email [string] (request parameter)
-Optional fields: firstName, lastName, streetAddress, password (at least one must be specified) 
+#### PUT: 
+Make changes to a user's information.
+
+_Required fields: email [string] (request parameter)_
+
+_Optional fields: firstName, lastName, streetAddress, password (at least one must be specified)_
+
 __A valid token that matches email provided must be provided in the request header__
 
-**DELETE:** Deletes a user and all related objects (cart and orders).
-Required fields: email [string] (request parameter)
+#### DELETE: 
+Deletes a user and all related objects (cart and orders).
+
+_Required fields: email [string] (request parameter)_
+
 __A valid token that matches email provided must be provided in the request header__
 
-###/tokens###
-**POST:** Issues and returns a new token for a specified user (valid for 1 hour), i.e. login the user.
-Required fields: email [string], password [string] (request payload)
+### /tokens
+#### POST:
+Issues and returns a new token for a specified user (valid for 1 hour), i.e. login the user.
 
-**GET:** Retrieves a token specified by id.
-Required fields: id [string] (request parameter)
+_Required fields: email [string], password [string] (request payload)_
 
-**PUT:** Extends an existing token by id. The specified token cannot be expired.
-Required fields: id [string], extend [boolean] (request payload)
+#### GET:
+Retrieves a token specified by id.
 
-**DELETE:** Deletes a token specified by id.
-Required fields: id [string] (request parameter)
+_Required fields: id [string] (request parameter)_
 
-###/menu###
-**GET:** Fetches the menu. User needs to be logged in, i.e. must have a valid token.
-Required fields: none
+#### PUT:
+Extends an existing token by id. The specified token cannot be expired.
+
+_Required fields: id [string], extend [boolean] (request payload)_
+
+#### DELETE:
+Deletes a token specified by id.
+
+_Required fields: id [string] (request parameter)_
+
+### /menu
+#### GET:
+Fetches the menu. User needs to be logged in, i.e. must have a valid token.
+
+_Required fields: none_
+
 __A valid token must be provided in the request header__
 
-###/carts###
-**POST:** Creates a shopping cart for the specified user 
-Required fields: email [string] (request payload)
+### /carts
+#### POST:
+Creates a shopping cart for the specified user 
+
+_Required fields: email [string] (request payload)_
+
 __A valid token that matches email provided must be provided in the request header__
 
-**GET:** Retrieves the contents of a cart specified by id.
-Required fields: id [string] (request parameter)
+#### GET:
+Retrieves the contents of a cart specified by id.
+
+_Required fields: id [string] (request parameter)_
+
 __A valid token that matches the user who specified cart belongs to must be provided in the request header__
 
-**PUT:** Adds or removes items to/from a cart specified by id.
-Required fields: id [string], items [object] (request payload)
+#### PUT:
+Adds or removes items to/from a cart specified by id.
+
+_Required fields: id [string], items [object] (request payload)_
+
 The items object's key-value pairs are: "item name" [string] and quantity [number]
 
 Example:
-`{
+```
+{
     "Large Pepperoni pizza": 2
-}`
+}
+```
 
 __A valid token that matches the user who specified cart belongs to must be provided in the request header__
 
-###/orders###
-**POST:** Place an order with the contents of a cart specified by id. When the order is placed, payment will be attempted automatically. If the payment was successful, the user will get a confirmation email.
-Required fields: cartId [string] (request payload)
+### /order
+#### POST:
+Place an order with the contents of a cart specified by id. When the order is placed, payment will be attempted automatically. If the payment was successful, the user will get a confirmation email.
+
+_Required fields: cartId [string] (request payload)_
+
 __A valid token that matches the user who specified cart belongs to must be provided in the request header__
 
-**GET:** Retrieve an order specified by id.
+#### GET:
+Retrieve an order specified by id.
+
 Required field: id [string]
+
 __A valid token that matches the user who specified order belongs to must be provided in the request header__
 
-**PUT:** Update the payment status of an order to "Paid" or "Unpaid". Used if the payment was not successful when the order was created. Sends a confirmation email to the user upon successful payment.
+#### PUT:
+Update the payment status of an order to "Paid" or "Unpaid". Used if the payment was not successful when the order was created. Sends a confirmation email to the user upon successful payment.
+
 Required field: id [string], paymentStatus [string] (request payload)
