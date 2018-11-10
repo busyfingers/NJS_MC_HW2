@@ -120,11 +120,11 @@ __A valid token that matches the user who specified cart belongs to must be prov
 #### GET:
 Retrieve an order specified by id.
 
-Required field: id [string]
+_Required field: id [string]_
 
 __A valid token that matches the user who specified order belongs to must be provided in the request header__
 
 #### PUT:
 Update the payment status of an order to "Paid" or "Unpaid". Used if the payment was not successful when the order was created. Sends a confirmation email to the user upon successful payment.
 
-Required field: id [string], paymentStatus [string] (request payload)
+_Required field: id [string], paymentStatus [string] (request payload)_
